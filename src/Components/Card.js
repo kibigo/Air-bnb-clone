@@ -1,30 +1,37 @@
 import React from "react";
-import swimming from "../Images/manswimming.jpg"
-import mountain from "../Images/mountainBike.jpg"
-import wedding from "../Images/wedding.jpg"
+
 import star from "../Images/red-star-1.svg"
 
-function Card (){
+function Card ({data}){
 
     return(
         <div className="card">
-            <img 
-                className="card-image" 
-                src={swimming}
-                alt="Image of Katie Zaferes"
-            />
-            <div className="card-stats">
-                <img 
-                    className="card-star" 
-                    src={star}
-                    alt="star icon"
-                />
-                <span>5.0</span>
-                <span className="gray">(6) </span>
-                <span className="gray">USA</span>
-            </div>
-            <h2>Life lessons with Katie Zaferes</h2>
-            <p> <span className="bold">From $ 136 </span>/ person </p>
+            
+            {data.map((item) => (
+                <div key={item.id} className="card-item">
+
+                    {parseInt(item.openSpots) == 0 && (
+                     <div className="card-badge">Sold out</div>
+                    )}
+                    <img 
+                        className="card-image"
+                        src={item.coverImg}
+                    />
+                    <div className="card-stats">
+                        <img 
+                            className="card-star"
+                            src={star}
+                        />
+                        <span>{item.stats.rating}</span>
+                        <span className="gray">{item.stats.reviewCount}</span>
+                        <span className="gray">{item.location}</span>
+                    
+                    </div>
+                    <h2 className="card-title">{item.title}</h2>
+                    <p> <span className="bold"> From $ {item.price}</span>/ person</p>
+        
+                    </div>
+            ))}
 
         </div>
     )
