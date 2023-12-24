@@ -10,7 +10,7 @@ function Card ({data}){
             {data.map((item) => (
                 <div key={item.id} className="card-item">
 
-                    {parseInt(item.openSpots) == 0 && (
+                    {item.openSpots == 0 && (
                      <div className="card-badge">Sold out</div>
                     )}
                     <img 
